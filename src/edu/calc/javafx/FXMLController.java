@@ -19,5 +19,6 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         textField.setText("0");
 
+
     }
 }
