@@ -1,5 +1,6 @@
 package edu.calc.javafx;
 
+import edu.calc.javafx.enginecalc.CalcEngine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,11 +17,6 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Label textField, tf2;
-
-    @FXML
-    private Button num1, num2, num3, num4, num5, num6, num7, num8, num9, num0, equals, sum, decrease, divide, multiply;
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,12 +41,35 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void calculate (ActionEvent event){
-        tf2.setText(textField.getText() + " =");
-        if(textField.getText().contains("+")){
+    private void zerar (ActionEvent event){
+        textField.setText("0");
+    }
 
+    @FXML
+    private void btnEqual() {
+        double result;
+        String expression = textField.getText();
+        String[] parts = expression.split("[\\+-/x]");
+        String num1 = parts[0];
+        String num2 = parts[1];
+        double d1 = Double.parseDouble(num1);
+        double d2 = Double.parseDouble(num2);
+        if (expression.contains("+")) {
+            result = d1 + d2;
+            textField.setText("" + result);
+        } else if (expression.contains("-")) {
+            result = d1 - d2;
+            textField.setText("" + result);
+        } else if (expression.contains("x")) {
+            result = d1 * d2;
+            textField.setText("" + result);
+        } else if (expression.contains("/")) {
+            result = d1 / d2;
+            textField.setText("" + result);
         }
-
+        for (String part : parts){
+            System.out.println(part);
+        }
     }
 
 }
